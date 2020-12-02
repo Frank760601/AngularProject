@@ -1,0 +1,94 @@
+<form #form="ngForm" (ngSubmit)="form.form.valid && AddStudent(form)" autocomplete="off">
+  <a routerLink="/heroes">HEROES</a>
+  <input type="hidden" name="id" [(ngModel)]="student.id">
+  <div class="form-group col-sm-12 row">
+    <div class="col-sm-4">
+      <div>
+        <label class="control-label">First Name :</label>
+      </div>
+      <div>
+        <input type="text" class="form-control" name="firstName" [(ngModel)]="student.firstName"
+               #firstName="ngModel" [ngClass]="{ 'is-invalid': form.submitted && firstName.invalid }" required />
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div>
+        <label class="control-label">Last Name :</label>
+      </div>
+      <div>
+        <input type="text" class="form-control" name="lastName" [(ngModel)]="student.lastName" #lastName="ngModel"
+               [ngClass]="{ 'is-invalid': form.submitted && lastName.invalid }" required />
+
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div>
+        <label class="control-label">City :</label>
+      </div>
+      <div>
+        <input type="text" class="form-control" name="city" [(ngModel)]="student.city" #city="ngModel"
+               [ngClass]="{ 'is-invalid': form.submitted && city.invalid }" required />
+
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group col-sm-12 row">
+    <div class="col-sm-4">
+      <div>
+        <label class="control-label">Email</label>
+      </div>
+      <div>
+        <input type="text" class="form-control" name="email" [(ngModel)]="student.email" #email="ngModel"
+               [ngClass]="{ 'is-invalid': form.submitted && email.invalid }" required />
+
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div>
+        <label class="control-label">Phone Number</label>
+      </div>
+      <div>
+        <input type="text" class="form-control" name="phoneNumber" [(ngModel)]="student.phoneNumber"
+               #phoneNumber="ngModel" [ngClass]="{ 'is-invalid': form.submitted && phoneNumber.invalid }" required />
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div>
+        <label class="control-label">Enrolled Date</label>
+      </div>
+      <div>
+        <input type="date" class="form-control" name="enrolledDate" [(ngModel)]="student.strenrolledDate"
+               #enrolledDate="ngModel" [ngClass]="{ 'is-invalid': form.submitted && enrolledDate.invalid }" required />
+
+      </div>
+    </div>
+  </div>
+  <div class="form-group col-sm-12 row">
+    <div class="col-sm-4">
+      <div>
+        <label class="control-label">Sex</label>
+      </div>
+      <div class="col-sm-8">
+        <kendo-dropdownlist class="form-control" name="selectedsex"
+                            [data]="sexList"
+                            [textField]="'text'"
+                            [valueField]="'value'"
+                            [(ngModel)]="student.selectedsex"
+                            (selectionChange)="selectionChange($event)">
+        </kendo-dropdownlist>{{myTag}}{{crudService.message}}
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group col-sm-12 row">
+    <div class="col-sm-4">
+      <button type="submit" class="btn btn-success">Save Information</button>
+      <button class="btn btn-success" (click)="myTest()">Test</button>
+    </div>
+  </div>
+</form>

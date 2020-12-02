@@ -1,0 +1,45 @@
+<div class="wrapper">
+  <div class="header">
+    <i class="fa fa-plus-circle" (click)="display='addNew'; title='Add New Student';" [hidden]="display!='list'"></i>
+    <i class="fa fa-arrow-circle-left" (click)="display='list'; title='Students Listing'; GetStudents()"
+       [hidden]="display!='addNew'"></i>
+    <i class="title">{{title}}</i>
+  </div>
+  <div>
+    {{crudService.message}}
+    <div [class]="isPositiveChange ? 'fontred':'fontblue'">$ {{stock.price}}</div>
+    <button (click)="myclick()"></button>
+  </div>
+  <hr>
+
+  <div class="listing" [hidden]="display!='list'">
+    <div>
+      <app-query (onVoted)="onListen($event)"></app-query>
+    </div>
+    <div>
+      <app-child (onVoted)="onGridListen($event)" (onDeleteVoted)="onDeleteListen($event)"></app-child>
+    </div>
+  </div>
+
+  <div class="addNew" [hidden]="display!='addNew'">
+    <app-edit (onEditVoted)="onEditListen($event)" (onTestVoted)="onTestListen($event)" [myTag]="TestTag"></app-edit>
+  </div>
+
+
+  <div [className]="togglePopUp ? 'modal show' : 'modal fade'" [style.display]="togglePopUp ? 'block' : 'none'">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Confirm Delete !!!</h4>
+        </div>
+        <div class="modal-body">
+          Are you sure want to delete ?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success btn-sm" (click)="DeleteStudent()">Yes</button>
+          <button type="button" class="btn btn-danger btn-sm" (click)="togglePopUp = false;">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
